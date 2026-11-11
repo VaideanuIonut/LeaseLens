@@ -19,16 +19,33 @@ $RECYCLE.BIN/
 *.iws
 *.code-workspace
 
+# Eclipse / Spring Tool Suite
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+# NetBeans
+**/nbproject/private/
+**/nbbuild/
+**/nbdist/
+**/.nb-gradle/
+
 # Build/Java/Maven
 **/target/
 **/build/
 **/out/
+**/dist/
 .gradle/
 *.class
 *.log
 hs_err_pid*
 replay_pid*
 **/.mvn/wrapper/maven-wrapper.jar
+HELP.md
 
 # Environment/Secrets
 .env
