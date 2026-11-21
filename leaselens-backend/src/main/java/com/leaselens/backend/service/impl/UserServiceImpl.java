@@ -35,12 +35,6 @@ public class UserServiceImpl implements UserService {
                         HttpStatus.NOT_FOUND, "User not found"));
     }
     @Transactional
-    @Override public UserDto create(UserDto dto) {
-        throw new ResponseStatusException(
-                HttpStatus.BAD_REQUEST,
-                "Password is required");
-    }
-    @Transactional
     @Override public UserDto create(UserDto dto, String rawPassword) {
         validateUnique(dto.username(), dto.email(), null);
         if (rawPassword == null || rawPassword.isBlank()) {
