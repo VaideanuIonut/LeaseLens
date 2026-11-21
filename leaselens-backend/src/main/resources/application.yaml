@@ -12,5 +12,5 @@ spring:
       ddl-auto: validate
 
 jwt:
-  secret: ${JWT_SECRET:lease-lens-development-secret-key-change-me-32bytes}
+secret: ${JWT_SECRET}
   expiration: ${JWT_EXPIRATION:86400000}
