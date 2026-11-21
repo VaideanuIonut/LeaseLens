@@ -6,7 +6,9 @@ import java.util.List;
 public interface UserService {
     List<UserDto> findAll();
     UserDto findById(Integer id);
+    UserDto findByEmail(String email);
     UserDto create(UserDto dto);
+    UserDto create(UserDto dto, String rawPassword);
     UserDto update(Integer id, UserDto dto);
     void delete(Integer id);
 }
