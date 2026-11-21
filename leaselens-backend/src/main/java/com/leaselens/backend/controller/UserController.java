@@ -13,7 +13,6 @@ public class UserController {
     public UserController(UserService service) { this.service = service; }
     @GetMapping public List<UserDto> findAll() { return service.findAll(); }
     @GetMapping("/{id}") public UserDto findById(@PathVariable Integer id) { return service.findById(id); }
-    @PostMapping @ResponseStatus(HttpStatus.CREATED) public UserDto create(@RequestBody UserDto dto) { return service.create(dto); }
     @PutMapping("/{id}") public UserDto update(@PathVariable Integer id, @RequestBody UserDto dto) { return service.update(id, dto); }
     @DeleteMapping("/{id}") @ResponseStatus(HttpStatus.NO_CONTENT) public void delete(@PathVariable Integer id) { service.delete(id); }
 }
