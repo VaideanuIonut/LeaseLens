@@ -1,12 +1,7 @@
-import './App.css'
+import AuthPage from './features/auth/AuthPage'
 
 function App() {
-
-  return (
-    <>
-      <h1>LeaseLens</h1>
-    </>
-  )
+  return <AuthPage />
 }
 
 export default App
