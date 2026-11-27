@@ -19,15 +19,22 @@ async function post(path, payload) {
     : null
 
   if (!response.ok) {
+    const fieldErrors = data?.fieldErrors
+    const validationDetails = fieldErrors && typeof fieldErrors === 'object'
+      ? Object.entries(fieldErrors)
+        .flatMap(([field, messages]) => (Array.isArray(messages) ? messages : [messages])
+          .filter((message) => typeof message === 'string' && message.trim())
+          .map((message) => `${field}: ${message}`))
+      : []
+
+    if (validationDetails.length) {
+      throw new Error(validationDetails.join('; '))
+    }
+
     throw new Error(data?.message || data?.error || `Authentication request failed (${response.status})`)
   }
 
-  const token = data?.token || data?.accessToken
-  if (token) {
-    localStorage.setItem('leaselens_token', token)
-  }
-
-  return data
+  return data || {}
 }
 
 export function login(payload) {

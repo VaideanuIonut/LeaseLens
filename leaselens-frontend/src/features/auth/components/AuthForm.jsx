@@ -1,8 +1,12 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Icon from '../../../components/ui/Icon'
 import { login, register } from '../services/authService'
+import { useAuth } from '../context/useAuth'
 
 function AuthForm() {
+  const navigate = useNavigate()
+  const { authenticate } = useAuth()
   const [mode, setMode] = useState('signin')
   const [showPassword, setShowPassword] = useState(false)
   const [username, setUsername] = useState('')
@@ -19,12 +23,14 @@ function AuthForm() {
 
     const isRegister = mode === 'register'
     const payload = isRegister
-      ? { username, email, password, rememberMe }
-      : { email, password, rememberMe }
+      ? { username, email, password }
+      : { email, password }
 
     try {
-      await (isRegister ? register(payload) : login(payload))
+      const response = await (isRegister ? register(payload) : login(payload))
+      authenticate(response, payload, rememberMe)
       setStatus(isRegister ? 'Account created successfully.' : 'Signed in successfully.')
+      navigate('/overview', { replace: true })
     } catch (error) {
       setStatus(error.message)
     } finally {
