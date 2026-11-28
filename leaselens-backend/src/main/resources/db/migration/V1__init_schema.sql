@@ -1,5 +1,8 @@
 -- V1__init_schema.sql - LeaseLens Complete Database Schema
 
+CREATE SCHEMA IF NOT EXISTS public;
+SET search_path TO public;
+
 -- 1. Tabele de referință / independente
 CREATE TABLE property_types (
                                 id SERIAL PRIMARY KEY,
@@ -122,4 +125,3 @@ CREATE TABLE rent_arrears (
 );
 -- Prevent the same unit from being attached to a lease more than once.
 ALTER TABLE lease_units ADD CONSTRAINT uq_lease_units_lease_unit UNIQUE (lease_id, unit_id);
-
